@@ -35,7 +35,7 @@ max_id = -1
 tweetCount = 0
 print("Downloading max {0} tweets".format(maxTweets))
 
-with open('ooutroladodoparaiso.csv', 'a') as csvFile:
+with open('ooutroladodoparaiso2.csv', 'a') as csvFile:
     csvWriter = csv.writer(csvFile)
     while tweetCount < maxTweets:
         try:
@@ -59,7 +59,7 @@ with open('ooutroladodoparaiso.csv', 'a') as csvFile:
             for tweet in new_tweets:
             	if (not tweet.retweeted) and ('RT @' not in tweet.text):
             	    print (tweet.created_at, tweet.text)
-            	    csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+            	    csvWriter.writerow([tweet.created_at, tweet.text])
             tweetCount += len(new_tweets)
             print("Downloaded {0} tweets".format(tweetCount))
             max_id = new_tweets[-1].id
