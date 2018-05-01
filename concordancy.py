@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
 df = pd.read_csv('scored_tweets.csv')
-df['concordancy'] = np.where((df['nagisa_score'] == df['laura_score']), df['nagisa_score'], np.nan)
-df['concordancy'] = np.where((df['elisa_score'] == df['laura_score']), df['elisa_score'], np.nan)
-df['concordancy'] = np.where((df['nagisa_score'] == df['elisa_score']), df['elisa_score'], np.nan)
+df['concordancy'] = 0
+df['concordancy'] = np.where((df['nagisa_score'] == df['laura_score']), df['nagisa_score'], df['concordancy'])
+df['concordancy'] = np.where((df['elisa_score'] == df['laura_score']), df['elisa_score'], df['concordancy'])
+df['concordancy'] = np.where((df['nagisa_score'] == df['elisa_score']), df['elisa_score'], df['concordancy'])
 print(df.groupby('concordancy').count())
 df_pos = df.loc[df['concordancy'] == 1]
 df_neg = df.loc[df['concordancy'] == -1]
