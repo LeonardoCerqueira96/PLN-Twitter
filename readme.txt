@@ -13,3 +13,11 @@ Guia para arquivos csv:
     -ooutroladodoparaisoteste.csv
         Todos os outros tweets pertencentes a ooutroladodoparaiso2.csv
         que não foram escolhidos para o arquivo de anotação.
+    -scored_tweets.csv
+	Todos os tweets de ooutroladodoparaisoanotshuffled.csv com anotação.
+    -scored_tweets_concordancy.csv
+	Tweets com columna de concordancia.
+	concordancy   number of tweets  arquivo
+	-1                 360   	negative.csv
+ 	0                  199  	neutro.csv
+ 	1                  219   	positive.csv
