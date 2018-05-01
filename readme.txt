@@ -21,3 +21,15 @@ Guia para arquivos csv:
 	-1                 360   	negative.csv
  	0                  199  	neutro.csv
  	1                  219   	positive.csv
+
+Arquivos de resultados:
+    -positive.csv
+	 Tweets com classificação final positiva.
+    -negative.csv
+	 Tweets com classificação final negativa.
+    -neutro.csv
+	 Tweets com classificação final neutra/indefinida.
+    -scored_tweets_concordancy.csv
+	 Tweets com classificação final.
+    -scored_tweets.csv
+	 Tweets com votos dos anotadores.

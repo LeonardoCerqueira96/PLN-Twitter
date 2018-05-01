@@ -1,0 +1,10 @@
+Concordância simples:
+Laura e Nagisa:0.599
+Laura e Elisa:0.61
+Nagisa e Elisa:0.778
+Todos: 510
+
+Concordância Kappa:
+Kappa -  nagisa e laura: 0.41345627835814563
+Kappa -  laura e elisa: 0.40664376413024617
+Kappa -  nagisa e elisa: 0.6614067785752852
