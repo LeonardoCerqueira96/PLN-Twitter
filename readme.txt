@@ -1,4 +1,29 @@
-﻿Guia para arquivos csv:
+﻿Autores:
+    Elisa Saltori Trujillo      NUSP: 8551100
+    Laura Cruz Quispe           NUSP: 10556941
+    Leonardo Cesar Cerqueira    NUSP: 8937483 
+
+Esse repositório é parte de um projeto universitário desenvolvido para a matéria
+SCC5908- Introdução ao Processamento de Língua Natural/SCC0633 - Processamento de
+Linguagem Natural no Instituto de Ciências Matemáticas e de Computação da USP.
+Ele contém tweets coletados sobre a novela O Outro Lado do Paraíso, de Walcyr Car-
+rasco. Uma amostra desses tweets foi anotada manualmente para a tarefa de classi-
+ficação de polaridade.
+
+Scripts:
+    -tweetCollector.py:
+        Script utilizado para coletar os tweets da novela. Usa a biblioteca 
+        Tweepy.
+
+    -concordancyCalculator.py:
+        Script para cálculo dos índices de concordância entre os anotadores.
+
+    -concordancy.py:
+        Script para cálculo da classificação final dos tweets anotados (a
+        partir da classificação individual dos anotadores)
+
+
+Guia para arquivos csv:
     -ooutroladodoparaiso.csv
 	Coleta inicial de tweets. Não foi utilizada para o trabalho
 
