@@ -1,6 +1,9 @@
-Guia para arquivos csv:
+﻿Guia para arquivos csv:
+    -ooutroladodoparaiso.csv
+	Coleta inicial de tweets. Não foi utilizada para o trabalho
+
     -ooutroladodoparaiso2.csv
-        Nova coleta de tweets
+        Nova coleta de tweets (dias 07/04 a 17/04/2018)
 
     -ooutroladodoparaisoanot.csv
         1000 tweets selecionados para anotação. Do dia 10 ao 14.
@@ -33,3 +36,5 @@ Arquivos de resultados:
 	 Tweets com classificação final.
     -scored_tweets.csv
 	 Tweets com votos dos anotadores.
+    -concordancy_results.txt
+	 Índices de concordância entre anotadores
