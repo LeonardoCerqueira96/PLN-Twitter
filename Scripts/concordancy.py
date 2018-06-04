@@ -13,7 +13,3 @@ df_pos.to_csv('positive.csv', index=False)
 df_neg.to_csv('negative.csv', index=False)
 df_neu.to_csv('neutro.csv', index=False)
 df.to_csv('scored_tweets_concordancy.csv', index=False)
-
-
-
-

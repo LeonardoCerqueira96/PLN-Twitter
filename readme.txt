@@ -63,3 +63,6 @@ Arquivos de resultados:
 	 Tweets com votos dos anotadores.
     -concordancy_results.txt
 	 Índices de concordância entre anotadores
+
+Como executar classifier.py:
+python classifier.py <0:ignorar contexto ou 1:olhar contexto> <arquivo com tweets normalizados> <arquivo de lexico de sentimentos> <arquivo de saida>
