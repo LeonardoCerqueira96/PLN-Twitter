@@ -98,7 +98,7 @@ def main():
 
             overall_sentiment += polarity
         
-        tweets.loc[i, 'auto_score'] = -1 if overall_sentiment < 0 else 1
+        tweets.loc[i, 'auto_score'] = 1 if overall_sentiment > 0 else -1
 
     tweets.to_csv(output_file, index=False)
 
