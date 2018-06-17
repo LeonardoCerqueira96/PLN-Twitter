@@ -48,6 +48,7 @@ def main():
         for j, word in enumerate(words):
             # Find the index of the word in the lexicon
             index = binary_search(lex['word'], word.lower())
+            words[j] = word.lower()
             
             # If not found, assign 0 to the polarity. Otherwise, assign the polarity found in the lexicon
             polarity = 0 if index < 0 else int(lex['class'][index])
