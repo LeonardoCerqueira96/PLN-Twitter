@@ -22,7 +22,7 @@ def main():
                         "definitivamente", "extremamente", "frequentemente", "bastante"]
     downtoner_words = ["pouco", "quase", "menos", "apenas"]
     
-	check_context_option = int(sys.argv[1])
+    check_context_option = int(sys.argv[1])
 	
     tweet_input_file = sys.argv[2].rstrip()
     tweets = pd.read_csv(tweet_input_file, encoding="utf-8")
@@ -98,7 +98,14 @@ def main():
 
             overall_sentiment += polarity
         
-        tweets.loc[i, 'auto_score'] = 1 if overall_sentiment > 0 else -1
+        if overall_sentiment > 0 :
+            tweets.loc[i, 'auto_score'] = 1
+        else:
+            if overall_sentiment < 0:
+                tweets.loc[i, 'auto_score'] = -1
+
+            else:
+                tweets.loc[i, 'auto_score'] = 0
 
     tweets.to_csv(output_file, index=False)
 
