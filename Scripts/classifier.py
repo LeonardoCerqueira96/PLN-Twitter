@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import csv  
 import sys
 
 def binary_search(seq, t):
@@ -16,27 +17,26 @@ def binary_search(seq, t):
         else:
             return m
 
-def main():
+def classify(tweet_input_file, emotion_lex_file, output_file, check_context_option):
     negation_words = ["jamais", "nada", "nem", "nenhum", "ninguém", "nunca", "não", "tampouco"]
     amplifier_words = ["mais", "muito", "demais", "completamente", "absolutamente", "totalmente", \
                         "definitivamente", "extremamente", "frequentemente", "bastante"]
     downtoner_words = ["pouco", "quase", "menos", "apenas"]
     
-    check_context_option = int(sys.argv[1])
-	
-    tweet_input_file = sys.argv[2].rstrip()
     tweets = pd.read_csv(tweet_input_file, encoding="utf-8")
     
-    emotion_lex_file = sys.argv[3].rstrip()
     lex = pd.read_csv(emotion_lex_file, encoding="utf-8")
 
-    output_file = sys.argv[4].rstrip()
-
     tweets['auto_score'] = 0
+    positive = 0
+    negative = 0
+    undefined = 0
+    sentiment_words = 0
+
     for i, row in tweets.iterrows():
         overall_sentiment = 0
         words = str(row["text_normalized"])
-        
+        print(words)
         # Removing irrelevant characters (punctuation, etc...)
         for ch in [',', '.', ';', '?', '!', '*', '(', ')', '%', '-', '"', '…', ':']:
             if ch in words:
@@ -44,10 +44,16 @@ def main():
 
         # Removing extra whitespace and splitting into a ndarray of strings
         words = np.asarray(words.strip().rstrip().split())
-        
+        no_sentiment_words = True
+
         for j, word in enumerate(words):
             # Find the index of the word in the lexicon
             index = binary_search(lex['word'], word.lower())
+
+            amp_word_in_context = False
+            if( word.upper() == word and word.lower() != word):
+                amp_word_in_context = True
+
             words[j] = word.lower()
             
             # If not found, assign 0 to the polarity. Otherwise, assign the polarity found in the lexicon
@@ -57,6 +63,8 @@ def main():
             if (polarity == 0):
                 continue
 
+            no_sentiment_words = False
+            sentiment_words += 1
             # Check the context if the argument was set to 1. Skip the check if it's the first word
             # The context window size was defined as 4
             if (check_context_option == 1 and j > 0):
@@ -64,12 +72,12 @@ def main():
 
                 # The next three four loops check if there are any amplifier, downtoner or negation
                 # words in the context
-                amp_word_in_context = False
                 for amplifier_word in amplifier_words:
                     if amplifier_word in words[left_limit : j]:
                         amp_word_in_context = True
                         break;
-                
+   
+
                 down_word_in_context = False
                 for downtoner_word in downtoner_words:
                     if downtoner_word in words[left_limit : j]:
@@ -98,18 +106,32 @@ def main():
                     polarity *= -1
 
             overall_sentiment += polarity
+            print(word, ": ", polarity)
         
         if overall_sentiment > 0 :
             tweets.loc[i, 'auto_score'] = 1
+            positive +=1
         else:
             if overall_sentiment < 0:
                 tweets.loc[i, 'auto_score'] = -1
+                negative +=1
 
             else:
-                tweets.loc[i, 'auto_score'] = 0
+                tweets.loc[i, 'auto_score'] = -1
+                negative +=1
+
+        if no_sentiment_words:
+            undefined +=1
+        print("Resultado: ", overall_sentiment)
+        #input()
 
     tweets.to_csv(output_file, index=False)
-
+    
+  
+    fields=[emotion_lex_file,tweet_input_file,check_context_option, positive, negative, undefined, sentiment_words/412]
+    with open('results.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow(fields)
 
 if __name__ == "__main__":
     main()
