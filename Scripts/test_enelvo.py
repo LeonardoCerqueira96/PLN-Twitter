@@ -1,5 +1,7 @@
 from normalizer import *
 import time
+
+
 def tester_enelvo(name):
     t = time.time()
     df = pd.read_csv(name, encoding="utf-8")
@@ -12,8 +14,7 @@ def tester_enelvo(name):
         if len(s1) > 0:
             n1 = normaliser_enelvo.normalise(s1)
             n0 = normaliser_enelvo.normalise(s0)
-            
-			print("###     Entrada: ", s)
+            print("###     Entrada: ", s)
             print("### Si eliminar: ", s1)
             print("###      Salida: ", n1)
             print("### No eliminar: ", s0)
