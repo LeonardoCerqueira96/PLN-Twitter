@@ -66,3 +66,7 @@ Arquivos de resultados:
 
 Como executar classifier.py:
 python classifier.py <0:ignorar contexto ou 1:olhar contexto> <arquivo com tweets normalizados> <arquivo de lexico de sentimentos> <arquivo de saida>
+
+Uma aplicação foi adicionada na web para interação como o classificador de análise léxico feito neste projeto, o enlace é:
+
+http://66.42.69.232/
